@@ -27,42 +27,52 @@ var categories = [
 loadProducts();
 
 //Load all products
-function loadProducts(){
-    for(let prod of products){
+function loadProducts() {
+    for (let prod of products) {
         addNewRow(prod);
     }
-
 }
 
+// save a student
+function save() {
+    var prod = {
+        id: products.length + 1,
+        name: document.getElementById("inputName").value,
+        email: document.getElementById("inputEmail").value,
+        phone: document.getElementById("inputPhone").value,
+        category: document.getElementById("selectCourse").value,
+        shift: getSelectedShift()
+    };
+
+    addNewRow(prod);
+    products.push(prod);
+
+    document.getElementById("formStudent").reset();
+}
+
+function getSelectedShift() {
+    var radios = document.getElementsByName("shiftRadios");
+
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            return radios[i].value;
+        }
+    }
+
+    return "";
+}
+
+
 //Add new row
-function addNewRow(prod){
+function addNewRow(prod) {
     var table = document.getElementById("studentsTable");
 
     var newRow = table.insertRow();
 
-    //insert id
-    var idNode = document.createTextNode(prod.id);
-    newRow.insertCell().appendChild(idNode);
-
-    //insert name
-    var nameNode = document.createTextNode(prod.name);
-    newRow.insertCell().appendChild(nameNode);
-
-    //insert email
-    var emailNode = document.createTextNode(prod.email);
-    newRow.insertCell().appendChild(emailNode);
-
-    //insert phone
-    var phoneNode = document.createTextNode(prod.phone);
-    newRow.insertCell().appendChild(phoneNode);
-
-    //insert category
-    var categoryNode = document.createTextNode(categories[prod.category - 1].name);
-    newRow.insertCell().appendChild(categoryNode);
-
-    //insert shift
-    var shiftNode = document.createTextNode(prod.shift);
-    newRow.insertCell().appendChild(shiftNode);
-
-    newRow.insertCell().innerHTML = "";
+    newRow.insertCell().textContent = prod.id;         // ID
+    newRow.insertCell().textContent = prod.name;       // Nome
+    newRow.insertCell().textContent = prod.email;      // Email
+    newRow.insertCell().textContent = prod.phone;      // Telefone
+    newRow.insertCell().textContent = categories[prod.category - 1].name; // Curso
+    newRow.insertCell().textContent = prod.shift;      // Turno
 }
