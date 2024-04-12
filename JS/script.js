@@ -63,16 +63,42 @@ function getSelectedShift() {
 }
 
 
-//Add new row
+// Add new row
 function addNewRow(prod) {
     var table = document.getElementById("studentsTable");
 
     var newRow = table.insertRow();
 
-    newRow.insertCell().textContent = prod.id;         // ID
-    newRow.insertCell().textContent = prod.name;       // Nome
-    newRow.insertCell().textContent = prod.email;      // Email
-    newRow.insertCell().textContent = prod.phone;      // Telefone
-    newRow.insertCell().textContent = categories[prod.category - 1].name; // Curso
-    newRow.insertCell().textContent = prod.shift;      // Turno
+    // Insert ID
+    var idCell = newRow.insertCell();
+    var idText = document.createTextNode(prod.id);
+    idCell.appendChild(idText);
+
+    // Insert Name
+    var nameCell = newRow.insertCell();
+    var nameText = document.createTextNode(prod.name);
+    nameCell.appendChild(nameText);
+
+    // Insert Email
+    var emailCell = newRow.insertCell();
+    var emailText = document.createTextNode(prod.email);
+    emailCell.appendChild(emailText);
+    emailCell.classList.add("d-none", "d-md-table-cell");
+
+    // Insert Phone
+    var phoneCell = newRow.insertCell();
+    var phoneText = document.createTextNode(prod.phone);
+    phoneCell.appendChild(phoneText);
+
+    // Insert Course
+    var courseCell = newRow.insertCell();
+    var courseText = document.createTextNode(categories[prod.category - 1].name);
+    courseCell.appendChild(courseText);
+
+    // Insert Shift
+    var shiftCell = newRow.insertCell();
+    var shiftText = document.createTextNode(prod.shift);
+    shiftCell.appendChild(shiftText);
+    shiftCell.classList.add("d-none", "d-md-table-cell");
 }
+
