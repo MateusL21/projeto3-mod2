@@ -89,11 +89,13 @@ function addNewRow(prod) {
     var phoneCell = newRow.insertCell();
     var phoneText = document.createTextNode(prod.phone);
     phoneCell.appendChild(phoneText);
+    phoneCell.classList.add("d-none", "d-md-table-cell");
 
     // Insert Course
     var courseCell = newRow.insertCell();
     var courseText = document.createTextNode(categories[prod.category - 1].name);
     courseCell.appendChild(courseText);
+    courseCell.classList.add("d-none", "d-md-table-cell")
 
     // Insert Shift
     var shiftCell = newRow.insertCell();
